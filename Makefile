@@ -13,7 +13,7 @@ LESSONS := \
 .PHONY: all pre-build $(LESSONS)
 
 all: pre-build $(LESSONS) # could give a recipe to commit and push, if bold
-	rsync -au --delete build/data/ data/
+	pushd build && zip -FSr /nfs/public-data/training/data data/ && popd
 
 pre-build:
 	git checkout master
