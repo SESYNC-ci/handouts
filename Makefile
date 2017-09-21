@@ -5,10 +5,10 @@
 
 GH := git@github.com:sesync-ci/
 LESSONS := \
-    basic-git-lesson \
     basic-R-lesson \
     data-manipulation-in-R-lesson \
-    graphics-with-ggplot2-lesson
+    graphics-with-ggplot2-lesson \
+    basic-RMarkdown-lesson
 
 .PHONY: all pre-build $(LESSONS)
 
