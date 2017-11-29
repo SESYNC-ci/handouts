@@ -12,6 +12,6 @@ Modify the `LESSONS` array in the Makefile to include only the desired lessons a
 
 **Following** a short course, the worksheets and data should be archived as a [release]. Configure a new release so the worksheets are downloaded as `Source code (zip)` and accompanying data as `data.zip`.
 
-[latest]: ../latest
+[latest]: ../../tree/latest
 [release]: ../../releases
 [download]: https://github.com/SESYNC-ci/handouts/archive/handouts.zip
