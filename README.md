@@ -1,6 +1,6 @@
 # README.md
 
-A `README.md` file is a very useful component of any project repository. As you can (or will soon) see, it is automatically rendered on GitHub, where it acts as a simple "homepage" for your project. Instructions for creating your own GitHub repository from these files will be given during the course. Instructions are also summarized in [CONTRIBUTING.md].
+A `README.md` file is a very useful component of any project repository. As you can (or will soon) see, it is automatically rendered on GitHub as a simple "homepage" for your project. Instructions for creating your own GitHub repository from these files will be given during the course. Instructions are also summarized in [CONTRIBUTING.md].
 
 ## Data
 
