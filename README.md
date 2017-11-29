@@ -2,7 +2,7 @@
 
 ## About
 
-The purpose of this repository is to assemble handouts for distribution during SESYNC training events. The content of the [latest] branch changes between short courses, but it typically includes the worksheets and data for several lessons. Most trainees will [download] the archive (zip) of the handouts branch during a short course.
+The purpose of this repository is to assemble handouts for distribution during SESYNC training events. The content of the [latest] branch changes between short courses, but it typically includes the worksheets and data for several lessons. Most trainees will [download] the archive (zip) of that branch during a short course.
 
 ## Use
 
@@ -14,4 +14,4 @@ Modify the `LESSONS` array in the Makefile to include only the desired lessons a
 
 [latest]: ../../tree/latest
 [release]: ../../releases
-[download]: https://github.com/SESYNC-ci/handouts/archive/handouts.zip
+[download]: ../../archive/latest.zip
