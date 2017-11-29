@@ -8,7 +8,7 @@ The purpose of this repository is to distribute handouts during a SESYNC trainin
 
 ## Data
 
-If the repository does not contain a data folder, [download](https://files.sesync.org/pydio/public/09bb83) a zipped data file to accompany the worksheets. A "good" data-synthesis pipeline separates the data from source code with separate storage locations&mdash;we'll take a shortcut for these lessons.
+If the repository does not contain a data folder, [download](https://files.sesync.org/pydio/public/09bb83) a zipped data file to accompany the worksheets. A "good" data-synthesis pipeline separates the data from source code with separate storage locations&mdash;we may take a shortcut for these lessons.
 
 ## Past Events
 
