@@ -16,7 +16,7 @@ all: pre-build $(LESSONS) # could give a recipe to commit and push, if bold
 	pushd build && zip -FSr /nfs/public-data/training/data data/ && popd
 
 pre-build:
-	git checkout master
+	git checkout handouts
 
 $(LESSONS): %: | build/%
 	$(MAKE) -C $| course
