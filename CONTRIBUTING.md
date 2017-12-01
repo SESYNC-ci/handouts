@@ -4,7 +4,7 @@ This document explains how to create and contribute to your own GitHub repositor
 
 1. **Configure git**
 1. **Create a new project in RStudio**
-1. **Create a RSA Key Pair (Optional)**
+1. **Create a RSA Key Pair (Recommended)**
 1. **Sync to a corresponding repository on GitHub**
 
 ## 1. Configure git
@@ -25,9 +25,9 @@ In RStudio, choose "Tools > Version Control > Project Setup ..." and select "git
 
 Highlight all the files, check any box, wait for it, and then click "Commit". In the window that opens, enter a commit message (e.g. "initial commit") and click "Commit".
 
-## 4. Create a RSA Key Pair (Optional)
+## 4. Create a RSA Key Pair (Recommended)
 
-Setting up an RSA key pair between your GitHub account and your computer allows you to sync to your repository on GitHub without typing in a password. To set up a key pair, follow these detailed [instructions](http://adamwilson.us/RDataScience/GitSSHNotes.html#generating-a-ssh-key-in-rstudio) written out by Adam Wilson, a professor of Geography from the University at Buffalo. **If you choose not to set up a key pair**, change any URL like `git@github.com:<username>/<repository>` to `https://github.com/<username>/<repository>/` in the instructions below.
+Setting up an RSA key pair between your GitHub account and your computer allows you to sync to your repository on GitHub without typing in a password. To set up a key pair, follow these detailed [instructions](http://adamwilson.us/RDataScience/GitSSHNotes.html#generating-a-ssh-key-in-rstudio) written out by Adam Wilson, a professor of Geography from the University at Buffalo.
 
 ## 5. Sync to a corresponding repository on GitHub
 
