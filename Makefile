@@ -3,6 +3,7 @@
 # assumption, public key authentiation on github
 # assumption, git is not tracking build/
 
+SHELL := /bin/bash
 LESSONS := \
     basic-R-lesson
 
