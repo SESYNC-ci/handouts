@@ -29,7 +29,8 @@ build/%:
 
 clean:
 	git checkout latest
-	git reset --hard clean
+	git reset --hard
+	git merge -s recursive -Xtheirs clean
 	git checkout master
 	rm -rf build/data
 
