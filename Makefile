@@ -10,6 +10,7 @@ LESSONS := \
 .PHONY: all build $(LESSONS) clean
 
 all: build $(LESSONS) # could give a recipe to commit and push, if bold
+	git add worksheet*
 	rsync -au --delete build/data/ data/
 	cp /nfs/public-data/training/README.md data/
 	zip -FSr /nfs/public-data/training/data data/
