@@ -17,6 +17,7 @@ pre-build:
 
 $(LESSONS): %: | build/% # static pattern rule with order-only dependency
 	$(MAKE) -C $| course
+# FIXME add /nfs/public-data/training/README.md to build/data ?
 
 build/%: | data
 	git clone "git@github.com:sesync-ci/$(@:build/%=%).git" $@
