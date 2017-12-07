@@ -7,24 +7,26 @@ SHELL := /bin/bash
 LESSONS := \
     basic-R-lesson
 
-.PHONY: all pre-build $(LESSONS)
+.PHONY: all build $(LESSONS)
 
-all: pre-build $(LESSONS) # could give a recipe to commit and push, if bold
-	pushd build && zip -FSr /nfs/public-data/training/data data/ && popd
+all: build $(LESSONS) # could give a recipe to commit and push, if bold
 	rsync -au --delete build/data/ data/
+	cp /nfs/public-data/training/README.md data/
+	zip -FSr /nfs/public-data/training/data data/
 
-pre-build:
+build: | build/data
 	git checkout latest
+
+build/data:
+	mkdir -p build/data
 
 $(LESSONS): %: | build/% # static pattern rule with order-only dependency
 	$(MAKE) -C $| course
-# FIXME add /nfs/public-data/training/README.md to build/data ?
 
-build/%: | data
+build/%:
 	git clone "git@github.com:sesync-ci/$(@:build/%=%).git" $@
 
-data:
-	mkdir -p build/data
-
+# clean:
+# FIXME
 # no make clean solution for worksheets yet
 # should make clean remove just build/data or whole build/, probably just build/data
