@@ -11,6 +11,7 @@ LESSONS := \
 
 all: pre-build $(LESSONS) # could give a recipe to commit and push, if bold
 	pushd build && zip -FSr /nfs/public-data/training/data data/ && popd
+	rsync -au --delete build/data/ data/
 
 pre-build:
 	git checkout latest
@@ -25,6 +26,5 @@ build/%: | data
 data:
 	mkdir -p build/data
 
-# could have lessons put data into build/data, then let rsync take care of syncing to delete non-needed data
-# no solution for worksheets though
-# maybe that should be a `make clean` rule
+# no make clean solution for worksheets yet
+# should make clean remove just build/data or whole build/, probably just build/data
