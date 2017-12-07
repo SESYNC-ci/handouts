@@ -30,7 +30,10 @@ build/%:
 clean:
 	git checkout latest
 	git reset --hard
-	git merge -s recursive -Xtheirs clean
+	git checkout clean
+	git merge --no-edit -s ours latest
+	git checkout latest
+	git merge clean
 	git checkout master
 	rm -rf build/data
 
