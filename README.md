@@ -6,7 +6,7 @@ The purpose of this repository is to assemble handouts for distribution during S
 
 ## Use
 
-Modify the `LESSONS` array in the Makefile to include only the desired lessons and execute `make course`. Make will prepare the latest branch with the necessary worksheets and data. Make does not push the branch to GitHub.
+Modify the `LESSONS` array in the Makefile to include only the desired lessons and execute `make`. Make will prepare the `latest` branch with the necessary worksheets and data. Make does not commit or push the branch to GitHub. Use `make clean` to force the `latest` branch to mirror the `clean` branch.
 
 ## Past Events
 
