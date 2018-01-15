@@ -6,6 +6,7 @@ LESSONS := $(shell ruby -e "require 'yaml';puts YAML.load_file('lessons.yml')['$
 # call make with a TAG found in lessons.yml
 build: handouts.zip
 	cp $< /nfs/public-data/training/
+	touch build
         # use github api to push $< as asset
 
 handouts.zip: release/data $(LESSONS)
