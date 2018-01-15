@@ -1,25 +1,16 @@
-# assumption, lesson numbers are correct
-# assumption, the generic worksheet name is 'worksheet'
-# assumption, public key authentiation on github
-# assumption, git is not tracking build/
-
 SHELL := /bin/bash
-LESSONS := \
-    basic-R-lesson
+LESSONS := $(shell ruby -e "require 'yaml';puts YAML.load_file('lessons.yml')['$TAG']")
 
-.PHONY: all build $(LESSONS) clean
+.PHONY: all $(LESSONS) clean
 
-all: build $(LESSONS) # could give a recipe to commit and push, if bold
-	git add worksheet*
-	rsync -au --delete build/data/ data/
-	cp /nfs/public-data/training/README.md data/
-	zip -FSr /nfs/public-data/training/data data/
+all: release $(LESSONS)
+	zip -FSr /nfs/public-data/training/handouts release
+	# use github api to push release folder.zip as asset, popssibly in if statement on above doing something
 
-build: | build/data
-	git checkout latest
-
-build/data:
-	mkdir -p build/data
+release: worksheet-README.md CONTRIBUTING.md
+	mkdir -p release/data
+	cp worksheet-README.md release/README.md
+	cp CONTRIBUTING.md release/CONTRIBUTING.md
 
 $(LESSONS): %: | build/% # static pattern rule with order-only dependency
 	$(MAKE) -C $| course
@@ -28,15 +19,4 @@ build/%:
 	git clone "git@github.com:sesync-ci/$(@:build/%=%).git" $@
 
 clean:
-	git checkout latest
-	git reset --hard
-	git checkout clean
-	git merge --no-edit -s ours latest
-	git checkout latest
-	git merge clean
-	git checkout master
-	rm -rf build/data
-
-# FIXME
-# no make clean solution for worksheets yet
-# should make clean remove just build/data or whole build/, probably just build/data
+	rm -rf release build
