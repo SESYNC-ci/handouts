@@ -2,16 +2,15 @@
 
 ## About
 
-The purpose of this repository is to assemble handouts for distribution during SESYNC training events. The content of the [latest] branch changes between short courses, but it typically includes the worksheets and data for several lessons. Trainees will [download] the archive (zip) of that branch during a short course.
+The purpose of this repository is to assemble handouts for distribution during SESYNC training events. Trainees will [download] the archive of the release folder at the time of a short course.
 
 ## Use
 
-Modify the `LESSONS` array in the Makefile to include only the desired lessons and execute `make`. Make will prepare the `latest` branch with the necessary worksheets and data. Make does not commit or push the branch to GitHub. Use `make clean` to force the `latest` branch to mirror the `clean` branch.
+make TAG=<top level variable in lessons.yml>
 
 ## Past Events
 
-**Following** a short course, the worksheets and data should be archived as a [release]. Configure a new release so the worksheets are downloaded as `Source code (zip)` and accompanying data as `data.zip`.
+**Following** a short course, the worksheets and data should be archived as a [release]. Configure a new release so the assets are a complete archive of the worksheets and data.
 
-[latest]: ../../tree/latest
 [release]: ../../releases
 [download]: ../../archive/latest.zip
