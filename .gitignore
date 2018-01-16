@@ -2,4 +2,5 @@ build/
 release/
 !release/CONTRIBUTING.md
 !release/README.md
+!release/handouts.Rproj
 handouts.zip
