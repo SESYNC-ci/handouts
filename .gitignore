@@ -1,5 +1,5 @@
 build/
-release/
+release/**
 !release/CONTRIBUTING.md
 !release/README.md
 !release/handouts.Rproj
