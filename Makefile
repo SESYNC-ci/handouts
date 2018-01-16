@@ -23,6 +23,6 @@ build/%:
 
 clean:
 	mkdir tmp
-	mv -t tmp release/CONTRIBUTING.md release/README.md
+	mv -t tmp release/CONTRIBUTING.md release/README.md release/handouts.Rproj
 	rm -rf release build handouts.zip
 	mv tmp release
