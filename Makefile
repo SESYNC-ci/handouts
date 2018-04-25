@@ -20,6 +20,7 @@ $(LESSONS): %: | build/%
 
 build/%:
 	git clone "git@github.com:sesync-ci/$(@:build/%=%).git" $@
+	touch $@/docs/_slides/*
 
 clean:
 	mkdir tmp

@@ -1,6 +1,12 @@
-'':
+2018-04-02-geospatial-workshop:
  - vector-analysis-syracuse-lesson
  - intro-land-change-modelling-lesson
+ - raster-time-series-alaska-lesson
+ - basic-python-gis-lesson
+ - fldas-pipeline-lesson
+ - leaflet-in-R-lesson
+ - geospatial-suitability-analysis-lesson
+ - remote-sensing-classification-lesson
 
 2018-01-16-bsos-faculty:
  - basic-R-lesson
