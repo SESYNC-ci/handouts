@@ -1,6 +1,7 @@
 build/
-release/**
-!release/CONTRIBUTING.md
-!release/README.md
-!release/handouts.Rproj
+handouts/**
+!handouts/CONTRIBUTING.md
+!handouts/README.md
+!handouts/handouts.Rproj
 handouts.zip
+data.zip

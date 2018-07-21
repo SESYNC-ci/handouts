@@ -9,11 +9,18 @@ build: handouts.zip
 	touch build
         # use github api to push $< as asset
 
-handouts.zip: release/data $(LESSONS)
-	pushd release && zip -FSr ../handouts * && popd
+handouts.zip: $(LESSONS) data.zip
+	mv handouts/data data
+	ln -s /nfs/public-data/training handouts/data
+	zip -FS -r --symlinks handouts handouts
+	rm handouts/data
+	mv data handouts/data
 
-release/data:
-	mkdir release/data
+data.zip: $(LESSONS) | handouts/data
+	pushd handouts && zip -FS -r ../data data && popd
+
+handouts/data:
+	mkdir handouts/data
 
 $(LESSONS): %: | build/%
 	$(MAKE) -C $| course
@@ -24,6 +31,6 @@ build/%:
 
 clean:
 	mkdir tmp
-	mv -t tmp release/CONTRIBUTING.md release/README.md release/handouts.Rproj
-	rm -rf release build handouts.zip
-	mv tmp release
+	mv -t tmp handouts/CONTRIBUTING.md handouts/README.md handouts/handouts.Rproj
+	rm -rf handouts build *.zip
+	mv tmp handouts
