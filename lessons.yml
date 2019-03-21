@@ -1,4 +1,13 @@
-2018-07-24-summer-institute:
+2019-03-27-geospatial-workshop:
+ - vector-analysis-syracuse-lesson
+ - intro-land-change-modelling-lesson
+ - raster-time-series-alaska-lesson
+ - geospatial-suitability-analysis-lesson
+ - remote-sensing-classification-lesson
+ - temperature-regression-lesson
+ - leaflet-in-R-lesson
+
+ 2018-07-24-summer-institute:
  - basic-R-lesson
  - graphics-with-ggplot2-lesson
  - basic-git-lesson
