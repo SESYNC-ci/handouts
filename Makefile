@@ -1,13 +1,14 @@
 SHELL := /bin/bash
 LESSONS := $(shell ruby -e "require 'yaml';puts YAML.load_file('lessons.yml')['$(TAG)']")
+SLIDES := $(addsuffix /docs/_slides,$(LESSONS))
 
-.PHONY: $(LESSONS)
+.PHONY: $(LESSONS) all slides
 
 # call make with a TAG found in lessons.yml
-build: handouts.zip
+all: handouts.zip
 	cp $< /nfs/public-data/training/
-	touch build
-        # use github api to push $< as asset
+#	touch build
+        # use github api to push $< as asset?
 
 handouts.zip: $(LESSONS) data.zip
 	mv handouts/data data
@@ -19,6 +20,11 @@ handouts.zip: $(LESSONS) data.zip
 data.zip: $(LESSONS) | handouts/data
 	pushd handouts && zip -FS -r ../data data && popd
 
+slides: $(addprefix build/,$(SLIDES))
+
+%/docs/_slides: %
+	$(MAKE) -C $< slides
+
 handouts/data:
 	mkdir handouts/data
 
@@ -27,7 +33,6 @@ $(LESSONS): %: | build/%
 
 build/%:
 	git clone "git@github.com:sesync-ci/$(@:build/%=%).git" $@
-	touch $@/docs/_slides/*
 
 clean:
 	mkdir tmp
