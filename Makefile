@@ -7,7 +7,6 @@ SLIDES := $(addsuffix /docs/_slides,$(LESSONS))
 # call make with a TAG found in lessons.yml
 all: handouts.zip
 	cp $< /nfs/public-data/training/
-#	touch build
         # use github api to push $< as asset?
 
 handouts.zip: $(LESSONS) data.zip
