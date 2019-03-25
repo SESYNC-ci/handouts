@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 LESSONS := $(shell ruby -e "require 'yaml';puts YAML.load_file('lessons.yml')['$(TAG)']")
 SLIDES := $(addsuffix /docs/_slides,$(LESSONS))
+PREVIEW := $(addsuffix /docs/_site,$(LESSONS))
 
 .PHONY: $(LESSONS) all slides
 
@@ -23,6 +24,11 @@ slides: $(addprefix build/,$(SLIDES))
 
 %/docs/_slides: %
 	$(MAKE) -C $< slides
+
+preview: $(addprefix build/,$(PREVIEW))
+
+%/docs/_site: %
+	$(MAKE) -C $< preview BASEURL=/rstudio
 
 handouts/data:
 	mkdir handouts/data
