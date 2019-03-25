@@ -11,9 +11,9 @@ all: handouts.zip
 
 handouts.zip: $(LESSONS) data.zip
 	mv handouts/data data
-	ln -s /nfs/public-data/training handouts/data
+#	ln -s /nfs/public-data/training handouts/data
 	zip -FS -r --symlinks handouts handouts
-	rm handouts/data
+#	rm handouts/data
 	mv data handouts/data
 
 data.zip: $(LESSONS) | handouts/data
