@@ -28,7 +28,7 @@ slides: $(addprefix build/,$(SLIDES))
 preview: $(addprefix build/,$(PREVIEW))
 
 %/docs/_site: %
-	$(MAKE) -C $< preview BASEURL=/rstudio
+	$(MAKE) -C $< preview BASEURL=/rstudio/
 
 handouts/data:
 	mkdir handouts/data
