@@ -1,4 +1,5 @@
 SHELL := /bin/bash
+TAG ?= $(shell head -n1 lessons.yml | cut -d: -f1)
 LESSONS := $(shell ruby -e "require 'yaml';puts YAML.load_file('lessons.yml')['$(TAG)']")
 SLIDES := $(addsuffix /docs/_slides,$(LESSONS))
 PREVIEW := $(addsuffix /docs/_site,$(LESSONS))
