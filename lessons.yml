@@ -36,3 +36,23 @@
  - git-in-the-shell-lesson
  - basic-Python-lesson
  - online-data-lesson
+
+cyberhelp.sesync.org:
+ - basic-R-lesson
+ - basic-git-lesson
+ - basic-Python-lesson
+ - maps-in-R-lesson
+ - census-data-manipulation-in-R-lesson
+ - interactive-rmarkdown-lesson
+ - leaflet-in-R-lesson
+ - basic-SQL-lesson
+ - online-data-lesson
+ - model-lang-lesson
+ - graphics-with-ggplot2-lesson
+ - gis-abm-lesson
+ - geospatial-packages-in-R-lesson
+ - basic-Shiny-lesson
+ - text-mining-lesson
+ - osgeo-lesson
+ - netlogo-programming-lesson
+ - introdb-lesson
