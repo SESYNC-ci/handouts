@@ -1,50 +1,36 @@
-## NOTES ABOUT matching to branch swarm in teaching-lab
+#!/bin/sh
 
-# users are going to be in LDAP or something self-servicable (not added by instructor)
-# data is going to added after swarm is deployed, but persists in volumes (nfs, postgres)
+# # Useage
+#
+# This script is intended to be run once, by a container attached to a
+# teaching lab network.  The "docker-compose.yml" of the
+# sesync-ci/teaching-lab repository includes the directive to run this
+# script, but it needs the path to this file set through the HANDOUTS
+# environment variable.
+#
+# ```
+# git clone git@github.com:SESYNC-ci/teaching-lab.git $DIR/teaching-lab
+# pushd $DIR/teaching-lab docker-compose build
+# popd
+# HANDOUTS=$PWD docker stack deploy -c $DIR/teaching-lab/docker-compose.yml $NAME
+# ```
 
-# get lab running or started
-COMPOSE=${1:-docker-compose.yml}
-STACK=${2:-lab}
-docker stack deploy -c "$COMPOSE" $STACK
+# # Data Volume (/nfs)
+#
+# The container maps $HANDOUTS -> /tmp, so use rsync to synchronize
+# the nfs volume with the handouts/data folder.
 
-# update the data volume
-mkdir -p ${NFS}/public-data
-rsync --update handouts/data ${NFS}/public-data/training
+mkdir -p /nfs/public-data
+rsync -rt --delete handouts/data/ /nfs/public-data/training
+chmod -R +rX /nfs/public-data
 
+# # Database
+#
+# check if database exists, and populate if false
+# so ...
 
-
-
-
-
-## none of the below
-
-
-# if needed, place a lab-users.txt file in this directory with one username per line
-if [ -f "lab-users.txt" ]; then
-
-    # generate missing passwords
-    while read USER PASS; do
-	if [ -z "$PASS" ]; then
-	    PASS=$(curl https://frightanic.com/goodies_content/docker-names.php)
-	fi
-	printf "%s %s\n" "$USER" "$PASS"
-    done < lab-users.txt > lab-users.txt.tmp && mv lab-users.txt.tmp lab-users.txt
-
-    # add all the users
-    let N=1000
-    while read USER PASS; do
-	docker exec "$CONTAINER" labuseradd "$USER" "$PASS" $N
-	let N++
-    done < lab-users.txt
-
-    # if needed, place a lab-groups.txt file in this directory with one
-    # groupname followed by at least one username per line
-    if [ -f "lab-groups.txt" ]; then
-	let N=2000
-	while read GROUP USERS; do
-	    docker exec "$CONTAINER" labgroupadd "$GROUP" $N $USERS
-	    let N++
-	done < lab-groups.txt
-    fi
-fi
+# psql -h postgres -u postgres -qc 'REVOKE ALL ON schema public FROM public'
+# createdb portal
+# createuser --no-login student
+# psql portal -qc 'ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO student'
+# psql portal -q < portal.sql
