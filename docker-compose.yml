@@ -1,7 +1,7 @@
 version: "3"
 services:
   web:
-    image: nginx:1.15.12
+    image: nginx
     ports:
       - 80:80
     volumes:
@@ -14,7 +14,7 @@ services:
     image: postgres
     volumes:
       - postgres:/var/lib/postgresql/data
-      - ./root/docker-entrypoint-initdb.db:/docker-entrypoint-initdb.db:ro
+      - ./root/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.db:ro
       - ~/.pg_service.conf:/.pg_service.conf
     networks:
       - labnet
@@ -32,17 +32,16 @@ services:
       - home:/home
     networks:
       - labnet
-  # init:
-  #   image: sesync/lab-debian
-  #   volumes:
-  #     - nfs:/nfs
-  #     - ./handouts:/tmp
-  #   command: ["find", "/tmp", "-maxdepth", "1", "-name", "*.sh", "-execdir", "sh", "{}", ";"]
-  #   deploy:
-  #     restart_policy:
-  #       condition: none
-  #   depends_on:
-  #     - postgres
+  init:
+    image: sesync/lab-debian
+    volumes:
+      - nfs:/nfs
+      - ./handouts:/handouts
+      - ./root/tmp:/tmp
+    command: ["find", "/tmp", "-maxdepth", "1", "-name", "*.sh", "-execdir", "sh", "{}", ";"]
+    deploy:
+      restart_policy:
+        condition: none
 volumes:
   postgres:
   nfs:

@@ -4,7 +4,7 @@ LESSONS := $(shell ruby -e "require 'yaml';puts YAML.load_file('lessons.yml')['$
 SLIDES := $(addsuffix /docs/_slides,$(LESSONS))
 PREVIEW := $(addsuffix /docs/_site,$(LESSONS))
 
-.PHONY: $(LESSONS) all slides
+.PHONY: $(LESSONS) all slides lab
 
 # call make with a TAG found in lessons.yml
 all: handouts.zip
@@ -39,6 +39,9 @@ $(LESSONS): %: | build/%
 
 build/%:
 	git clone "git@github.com:sesync-ci/$(@:build/%=%).git" $@
+
+lab:
+	docker stack deploy -c docker-compose.yml test
 
 clean:
 	mkdir tmp
