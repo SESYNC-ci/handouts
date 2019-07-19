@@ -17,10 +17,10 @@ if [ -f "users.txt" ]; then
 	if [ "$(id $USER)" ]; then
 	    continue
 	fi
-	if [ -d "/home/$USER" ]; then
-	    useradd -p $(openssl passwd -1 "$PASS") -u "$N" --no-create-home --home-dir "/home/$USER" "$USER"
-	else
+	if [ ! -d "/home/$USER" ] && [ "$1" == "-m" ] ; then
 	    useradd -p $(openssl passwd -1 "$PASS") -u "$N" -m "$USER"
+	else
+	    useradd -p $(openssl passwd -1 "$PASS") -u "$N" --no-create-home --home-dir "/home/$USER" "$USER"
 	fi
     done < "users.txt"
 fi
@@ -39,7 +39,7 @@ if [ -f "groups.txt" ]; then
 	groupadd -g "$N" "$GROUP"
 	gpasswd -M "$USERS" "$GROUP"
 	DATA="/nfs/$GROUP-data"
-	if [ ! -d "$DATA" ]; then
+	if [ ! -d "$DATA" ] && [ "$1" == "-m" ]; then
 	    mkdir "$DATA"
 	    chgrp "$GROUP" "$DATA"
 	    chmod g+swrx,o-rx "$DATA"
@@ -53,7 +53,7 @@ fi
 # the nfs volume with the handouts/data folder. Doesn't matter if run
 # by multiple containers.
 
-if [ -d "/handouts/data" ]; then
+if [ -d "/handouts/data" ] && [ "$1" == "-m" ]; then
     mkdir -p /nfs/public-data
     rsync -rt --delete /handouts/data/ /nfs/public-data/training
     chmod -R +rX /nfs/public-data
@@ -62,4 +62,7 @@ fi
 # # Docker CMD
 #
 # run the docker cmd as specified in exec form
+if [ "$1" == "-m" ]; then
+  shift  
+fi
 exec "$@"
