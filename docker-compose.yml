@@ -32,8 +32,8 @@ services:
     networks:
       - labnet
     entrypoint:
-#      - /bin/bash
-#      - /tmp/lab/docker-entrypoint.sh
+      - /bin/bash
+      - /tmp/lab/docker-entrypoint.sh
       - /usr/local/bin/jupyterhub
       - -f
       - /etc/jupyterhub/jupyterhub_config.py
