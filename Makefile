@@ -4,18 +4,18 @@ LESSONS := $(shell ruby -e "require 'yaml';puts YAML.load_file('lessons.yml')['$
 SLIDES := $(addsuffix /docs/_slides,$(LESSONS))
 PREVIEW := $(addsuffix /docs/_site,$(LESSONS))
 
-.PHONY: $(LESSONS) all slides lab
+.PHONY: $(LESSONS) all slides preview lab
 
-# call make with a TAG found in lessons.yml
+# call make, optionally with a TAG found in lessons.yml
 all: handouts.zip
 	cp $< /nfs/public-data/training/
         # use github api to push $< as asset?
 
 handouts.zip: $(LESSONS) data.zip
 	mv handouts/data data
-#	ln -s /nfs/public-data/training handouts/data
+	ln -s /nfs/public-data/training handouts/data
 	zip -FS -r --symlinks handouts handouts
-#	rm handouts/data
+	rm handouts/data
 	mv data handouts/data
 
 data.zip: $(LESSONS) | handouts/data
