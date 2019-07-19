@@ -14,7 +14,7 @@ if [ -f "users.txt" ]; then
     let N=999
     while read USER PASS; do
 	let N++
-	if [ $(id "$USER") ]; then
+	if [ "$(id $USER)" ]; then
 	    continue
 	fi
 	if [ -d "/home/$USER" ]; then
@@ -27,16 +27,16 @@ fi
 
 # add all the users to groups from the /tmp/lab/groups.txt file
 if [ -f "groups.txt" ]; then
-    
+
+    IFS=','    
     # this script assumes no more than 1000 users
     let N=1999
     while read GROUP USERS; do
 	let N++
-	if [ $(getent group "$GROUP") ]; then
+	if [ "$(getent group $GROUP)" ]; then
 	    continue
 	fi
 	groupadd -g "$N" "$GROUP"
-	IFS=','
 	gpasswd -M "$USERS" "$GROUP"
 	DATA="/nfs/$GROUP-data"
 	if [ ! -d "$DATA" ]; then
