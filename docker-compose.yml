@@ -1,7 +1,44 @@
 version: "3"
 services:
+  # postgres:
+  #   image: postgres
+  #   volumes:
+  #     - postgres:/var/lib/postgresql/data
+  #     - ./root/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.db:ro
+  #     - .pg_service.conf:/.pg_service.conf
+  #   networks:
+  #     - labnet
+  rstudio:
+    image: sesync/lab-rstudio
+    volumes:
+      - nfs:/nfs
+      - home:/home
+      - ./handouts:/handouts:ro
+      - ./root/tmp/lab:/tmp/lab:ro
+    networks:
+      - labnet
+    entrypoint:
+      - /bin/bash
+      - /tmp/lab/docker-entrypoint.sh
+      - /usr/lib/rstudio-server/bin/rserver
+      - --server-daemonize=0
+  jupyter:
+    image: sesync/lab-jupyter
+    volumes:
+      - nfs:/nfs
+      - home:/home
+      - ./handouts:/handouts:ro
+      - ./root/tmp/lab:/tmp/lab:ro
+    networks:
+      - labnet
+    entrypoint:
+#      - /bin/bash
+#      - /tmp/lab/docker-entrypoint.sh
+      - /usr/local/bin/jupyterhub
+      - -f
+      - /etc/jupyterhub/jupyterhub_config.py
   web:
-    image: sesync/lab-nginx
+    image: nginx
     ports:
       - 80:80
     networks:
@@ -10,32 +47,6 @@ services:
       - ./docs/_site:/usr/share/nginx/html:ro
       - ./root/etc/nginx/conf.d:/etc/nginx/conf.d:ro
       - ./root/etc/nginx/sites-enabled:/etc/nginx/sites-enabled:ro
-  # postgres:
-  #   image: postgres
-  #   volumes:
-  #     - postgres:/var/lib/postgresql/data
-  #     - ./root/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.db:ro
-  #     - ~/.pg_service.conf:/.pg_service.conf
-  #   networks:
-  #     - labnet
-  rstudio:
-    image: sesync/lab-rstudio
-    volumes:
-      - nfs:/nfs
-      - home:/home
-      - ./handouts:/handouts
-      - ./root/tmp:/tmp
-    networks:
-      - labnet
-#    entrypoint: ["/tmp/docker-entrypoint.sh"]
-  jupyter:
-    image: sesync/lab-jupyter
-    volumes:
-      - nfs:/nfs
-      - home:/home
-    networks:
-      - labnet
-    # depends on rstudio for lab-users.txt
 volumes:
   postgres:
   nfs:

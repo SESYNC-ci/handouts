@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 
 # # Users and Group Setup
 #
@@ -7,8 +8,8 @@
 # Optionally create a /tmp/lab-groups.txt file a groupname followed by the member usernames,
 # separated by spaces, one per line.
 #
-# Add all the users from the /tmp/lab-users.txt file
-if [ -f "/tmp/lab-users.txt" ]; then
+# Add all the users from the /tmp/lab/users.txt file
+if [ -f "users.txt" ]; then
    
     let N=999
     while read USER PASS; do
@@ -19,13 +20,13 @@ if [ -f "/tmp/lab-users.txt" ]; then
 	if [ -d "/home/$USER" ]; then
 	    useradd -p $(openssl passwd -1 "$PASS") -u "$N" --no-create-home --home-dir "/home/$USER" "$USER"
 	else
-	    useradd -m -p $(openssl passwd -1 "$PASS") "$USER"
+	    useradd -p $(openssl passwd -1 "$PASS") -u "$N" -m "$USER"
 	fi
-    done < "/tmp/lab-users.txt"
+    done < "users.txt"
 fi
 
-# add all the users to groups from the /tmp/lab-groups.txt file
-if [ -f "/tmp/lab-groups.txt" ]; then
+# add all the users to groups from the /tmp/lab/groups.txt file
+if [ -f "groups.txt" ]; then
     
     # this script assumes no more than 1000 users
     let N=1999
@@ -38,12 +39,12 @@ if [ -f "/tmp/lab-groups.txt" ]; then
 	IFS=','
 	gpasswd -M "$USERS" "$GROUP"
 	DATA="/nfs/$GROUP-data"
-	if [! -d "$DATA" ]; then
+	if [ ! -d "$DATA" ]; then
 	    mkdir "$DATA"
 	    chgrp "$GROUP" "$DATA"
 	    chmod g+swrx,o-rx "$DATA"
 	fi
-    done < /tmp/lab-groups.txt
+    done < groups.txt
 fi
 
 # # Data Volume (/nfs)
@@ -52,9 +53,11 @@ fi
 # the nfs volume with the handouts/data folder. Doesn't matter if run
 # by multiple containers.
 
-mkdir -p /nfs/public-data
-rsync -rt --delete /handouts/data/ /nfs/public-data/training
-chmod -R +rX /nfs/public-data
+if [ -d "/handouts/data" ]; then
+    mkdir -p /nfs/public-data
+    rsync -rt --delete /handouts/data/ /nfs/public-data/training
+    chmod -R +rX /nfs/public-data
+fi
 
 # # Docker CMD
 #
