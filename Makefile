@@ -41,7 +41,7 @@ build/%:
 	git clone "git@github.com:sesync-ci/$(@:build/%=%).git" $@
 
 lab:
-	docker stack deploy -c docker-compose.yml test
+	docker stack deploy -c docker-compose.yml lab
 
 clean:
 	mkdir tmp

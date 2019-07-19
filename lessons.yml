@@ -1,6 +1,9 @@
 2019-07-23-summer-institute:
  - basic-R-lesson
-
+ - graphics-with-ggplot2-lesson
+ - interactive-rmarkdown-lesson
+ - data-package-lesson
+ 
 2019-03-27-geospatial-workshop:
  - vector-analysis-syracuse-lesson
  - intro-land-change-modelling-lesson

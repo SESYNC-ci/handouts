@@ -1,30 +1,33 @@
 version: "3"
 services:
   web:
-    image: nginx
+    image: sesync/lab-nginx
     ports:
       - 80:80
+    networks:
+      - labnet
     volumes:
       - ./docs/_site:/usr/share/nginx/html:ro
       - ./root/etc/nginx/conf.d:/etc/nginx/conf.d:ro
       - ./root/etc/nginx/sites-enabled:/etc/nginx/sites-enabled:ro
-    networks:
-      - labnet
-  postgres:
-    image: postgres
-    volumes:
-      - postgres:/var/lib/postgresql/data
-      - ./root/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.db:ro
-      - ~/.pg_service.conf:/.pg_service.conf
-    networks:
-      - labnet
+  # postgres:
+  #   image: postgres
+  #   volumes:
+  #     - postgres:/var/lib/postgresql/data
+  #     - ./root/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.db:ro
+  #     - ~/.pg_service.conf:/.pg_service.conf
+  #   networks:
+  #     - labnet
   rstudio:
     image: sesync/lab-rstudio
     volumes:
       - nfs:/nfs
       - home:/home
+      - ./handouts:/handouts
+      - ./root/tmp:/tmp
     networks:
       - labnet
+#    entrypoint: ["/tmp/docker-entrypoint.sh"]
   jupyter:
     image: sesync/lab-jupyter
     volumes:
@@ -32,16 +35,7 @@ services:
       - home:/home
     networks:
       - labnet
-  init:
-    image: sesync/lab-debian
-    volumes:
-      - nfs:/nfs
-      - ./handouts:/handouts
-      - ./root/tmp:/tmp
-    command: ["find", "/tmp", "-maxdepth", "1", "-name", "*.sh", "-execdir", "sh", "{}", ";"]
-    deploy:
-      restart_policy:
-        condition: none
+    # depends on rstudio for lab-users.txt
 volumes:
   postgres:
   nfs:
