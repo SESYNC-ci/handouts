@@ -20,6 +20,7 @@ services:
     entrypoint:
       - /bin/bash
       - /tmp/lab/docker-entrypoint.sh
+      - -m
       - /usr/lib/rstudio-server/bin/rserver
       - --server-daemonize=0
   jupyter:
