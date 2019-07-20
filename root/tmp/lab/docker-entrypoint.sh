@@ -1,5 +1,6 @@
 #!/bin/bash
-cd "$(dirname "$0")"
+
+popd "$(dirname "$0")"
 
 # # Users and Group Setup
 #
@@ -65,4 +66,5 @@ fi
 if [ "$1" == "-m" ]; then
   shift  
 fi
+pushd
 exec "$@"
