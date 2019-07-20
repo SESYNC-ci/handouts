@@ -1,6 +1,8 @@
 2019-07-23-summer-institute:
  - basic-R-lesson
  - graphics-with-ggplot2-lesson
+ - basic-git-lesson
+ - census-data-manipulation-in-R-lesson
  - interactive-rmarkdown-lesson
  - data-package-lesson
  
