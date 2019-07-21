@@ -2,15 +2,16 @@
 
 ## About
 
-The purpose of this repository is to assemble handouts for distribution during SESYNC training events. Trainees will [download] the archive of the release folder at the time of a short course.
+The purpose of this repository is to assemble handouts for distribution during SESYNC training events. Trainees will [download] the handouts.zip file, containing worksheets but not data, at the time of a short course. The data
+can be provided as a separate data.zip or by linking to shared data within the teachng-lab container (see the Docker section below).
 
 ## Use
 
-make TAG=<top level variable in lessons.yml>
+To assemble the handouts for all lesson from a specific list in the `lessons.yml` file, call `make TAG=<NAME>`. Simply calling `make` uses the first list of courses found rather than one specified by its tag.
 
 ## Past Events
 
-**Following** a short course, the worksheets and data should be archived as a [release]. Configure a new release so the assets are a complete archive of the worksheets and data.
+**Following** a short course, the worksheets and data should be archived as a [release]. Configure a new release so the assets are a complete archive of the worksheets and data. The syllabus should be updated to point the handouts link to this release.
 
 [release]: ../../releases
 [download]: ../../archive/latest.zip
