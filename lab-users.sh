@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -f "root/tmp/lab/users.txt" ]; then
+    exit
+fi
+
 while read USER PASS; do
     if [ -z "$PASS" ]; then
 	PASS=$(curl https://frightanic.com/goodies_content/docker-names.php)
