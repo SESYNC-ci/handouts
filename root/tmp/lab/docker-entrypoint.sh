@@ -54,9 +54,9 @@ fi
 # the nfs volume with the handouts/data folder. Doesn't matter if run
 # by multiple containers.
 
-if [ -d "/handouts/data" ] && [ "$1" == "-m" ]; then
+if [ -d "data" ] && [ "$1" == "-m" ]; then
     mkdir -p /nfs/public-data
-    rsync -rt --delete /handouts/data/ /nfs/public-data/training
+    rsync -rt --delete data/ /nfs/public-data/training
     chmod -R +rX /nfs/public-data
 fi
 

@@ -13,7 +13,7 @@ services:
     volumes:
       - nfs:/nfs
       - home:/home
-      - ./handouts:/handouts:ro
+      - ./handouts/data:/tmp/lab/data:ro
       - ./root/tmp/lab:/tmp/lab:ro
     networks:
       - labnet
@@ -28,7 +28,6 @@ services:
     volumes:
       - nfs:/nfs
       - home:/home
-      - ./handouts:/handouts:ro
       - ./root/tmp/lab:/tmp/lab:ro
     networks:
       - labnet
