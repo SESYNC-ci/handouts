@@ -38,7 +38,7 @@ $(LESSONS): %: | build/%
 	$(MAKE) -C $| course
 
 build/%:
-	git clone "git@github.com:sesync-ci/$(@:build/%=%).git" $@
+	git clone "git@github.com:SESYNC-ci/$(@:build/%=%).git" $@
 
 clean:
 	mkdir tmp
