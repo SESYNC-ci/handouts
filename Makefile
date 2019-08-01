@@ -9,8 +9,7 @@ PREVIEW := $(addsuffix /docs/_site,$(LESSONS))
 # call make, optionally with a TAG found in lessons.yml
 all: handouts.zip
 	bash lab-users.sh
-	cp $< /nfs/public-data/training/xhandouts.zip # FIXME take this back out after the course
-        # use github api to push $< as asset?
+	cp $< /nfs/public-data/training/handouts.zip
 
 handouts.zip: $(LESSONS) data.zip
 	mv handouts/data data
