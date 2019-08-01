@@ -4,12 +4,12 @@ LESSONS := $(shell ruby -e "require 'yaml';puts YAML.load_file('lessons.yml')['$
 SLIDES := $(addsuffix /docs/_slides,$(LESSONS))
 PREVIEW := $(addsuffix /docs/_site,$(LESSONS))
 
-.PHONY: $(LESSONS) all slides
+.PHONY: $(LESSONS) all slides preview lab
 
-# call make with a TAG found in lessons.yml
+# call make, optionally with a TAG found in lessons.yml
 all: handouts.zip
-	cp $< /nfs/public-data/training/
-        # use github api to push $< as asset?
+	bash lab-users.sh
+	cp $< /nfs/public-data/training/handouts.zip
 
 handouts.zip: $(LESSONS) data.zip
 	mv handouts/data data
@@ -39,6 +39,9 @@ $(LESSONS): %: | build/%
 
 build/%:
 	git clone "git@github.com:SESYNC-ci/$(@:build/%=%).git" $@
+
+lab:
+	docker stack deploy -c docker-compose.yml lab
 
 clean:
 	mkdir tmp

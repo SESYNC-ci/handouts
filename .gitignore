@@ -5,4 +5,5 @@ handouts/**
 !handouts/handouts.Rproj
 handouts.zip
 data.zip
-lab-users.txt
+root/tmp/lab/users.txt
+root/tmp/lab/groups.txt
