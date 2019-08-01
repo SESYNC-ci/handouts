@@ -2,7 +2,7 @@
 
 ## About
 
-The purpose of this repository is to assemble handouts for distribution during SESYNC training events. Trainees will [download] the handouts.zip file, containing worksheets but not data, at the time of a short course. The data
+The purpose of this repository is to 1) assemble handouts for distribution during SESYNC training events, and 2) launch the teaching-lab Docker stack confiured with these handouts. Trainees will [download] the handouts.zip file, containing worksheets but not data, at the time of a short course. The data
 can be provided as a separate data.zip or by linking to shared data within the teachng-lab container (see the Docker section below).
 
 ## Use
