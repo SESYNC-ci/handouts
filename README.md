@@ -20,13 +20,15 @@ To assemble the handouts for all lesson from a specific list in the `lessons.yml
 
 This repository works in conjunction with the SESYNC-ci/teaching-lab to provision a containerized, cloud platform providing software to participants during a workshop or short course.
 
-1. Build the the docker images defined by the Dockerfiles in the teaching-lab repo. Use `docker rmi <NAME>` and `docker image prune` to clean out existing images as needed before building.
+1. The [teaching-lab repository](https://github.com/sesync-ci/teaching-lab) must be cloned into your research-home space. 
+
+1. Log in to docker01.research.sesync.org, and cd into the teaching-lab repository.
+
+1. Build the the docker images defined by the Dockerfiles in the teaching-lab repo. Use `docker images` to see existing images, and `docker rmi <NAME>` and `docker image prune` to clean out existing images as needed before building.
 ```
 icarroll@docker01:teaching-lab$ make 
 ```
-1. One side effect of running `make` in the handouts repository is the creation of a data.zip, whose contents need to be made available to the `docker-entrypoint.sh` script
-that initializes the docker containers. First run `make` on a server that can access /nfs to get the data. A second side effect is processing the root/tmp/lab/users.txt file
-if it exits.
+1. Run `make` on a server (such as the ssh gateway) that can access /nfs to get the data. One side effect of running `make` in the handouts repository is the creation of a data.zip, whose contents need to be made available to the `docker-entrypoint.sh` script that initializes the docker containers. A second side effect is processing the root/tmp/lab/users.txt file if it exits.
 ```
 icarroll@sshgw01:handouts$ make
 ```
