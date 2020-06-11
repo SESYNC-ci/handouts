@@ -20,21 +20,21 @@ To assemble the handouts for all lesson from a specific list in the `lessons.yml
 
 This repository works in conjunction with the SESYNC-ci/teaching-lab to provision a containerized, cloud platform providing software to participants during a workshop or short course.
 
-1. The [teaching-lab repository](https://github.com/sesync-ci/teaching-lab) must be cloned into your research-home space. If it's not there, clone it.
+- The [teaching-lab repository](https://github.com/sesync-ci/teaching-lab) and [handouts](https://github.com/SESYNC-ci/handouts.git) repositories must be cloned into your research-home space. 
 
-1. Log in to docker01.research.sesync.org, and `cd` into the teaching-lab repository.
+- Log in to docker01.research.sesync.org, and `cd` into the teaching-lab repository.  Your user will need to be in the `docker` UNIX group on this host.
 
-1. Build the docker images defined by the Dockerfiles in the teaching-lab repo. Use `docker images` to see existing images, and `docker rmi <NAME>` and `docker image prune` to clean out existing images as needed before building.
+  - Build the docker images defined by the Dockerfiles in the teaching-lab repo. Use `docker images` to see existing images, and `docker rmi <NAME>` and `docker image prune` to clean out existing images as needed before building.
     ```
     icarroll@docker01:teaching-lab$ make 
     ```
 
-1. Run `make` on a server (such as the ssh gateway) that can access /nfs to get the data. One side effect of running `make` in the handouts repository is the creation of a data.zip, whose contents need to be made available to the `docker-entrypoint.sh` script that initializes the docker containers. A second side effect is processing the root/tmp/lab/users.txt file if it exits.
+- Log into a host (eg. sshgw02.research.sesync.org) that can access `/nfs` and `cd` into the handouts repoisotry you cloned earlier.  Run `make` to get the data. One side effect of running `make` in the handouts repository is the creation of a data.zip, whose contents need to be made available to the `docker-entrypoint.sh` script that initializes the docker containers. A second side effect is processing the root/tmp/lab/users.txt file if it exits.
     ```
-    icarroll@sshgw01:handouts$ make
+    icarroll@sshgw02:handouts$ make
     ```
 
-1. Now, go back to the docker01 server, and type `cd /srv` to get to the built-in Linux folder called /srv.  Create a different clone of the handouts repo so the docker daemon will be able to mount folders within it.
+- Now, go back to the docker01 server, and type `cd /srv` to get to the built-in Linux folder called /srv.  Create a different clone of the handouts repo so the docker daemon will be able to mount folders within it.
 If a handouts folder already exists, and therefore the clone fails, delete the handouts folder using 
 `sudo rm -r handouts` before cloning.    
     ```
@@ -43,20 +43,20 @@ If a handouts folder already exists, and therefore the clone fails, delete the h
     icarroll@docker01:srv$ sudo git clone https://github.com/SESYNC-ci/handouts.git
     ```
 
-1. Unzip the data to that clone, so the docker daemon will be able to mount it.
+  - Unzip the data to that clone, so the docker daemon will be able to mount it.
     ```
     icarroll@docker01:srv$ cd handouts
     icarroll@docker01:handouts$ cp ~/path/to/handouts/data.zip /tmp
     icarroll@docker01:handouts$ sudo unzip /tmp/data.zip -d root/tmp/lab
     ```
 
-1. Copy the user and group information to the same location
+  - Copy the user and group information to the same location
     ```
     icarroll@docker01:handouts$ cp ~/path/to/handouts/root/tmp/lab/*.txt /tmp
     icarroll@docker01:handouts$ sudo cp /tmp/*.txt root/tmp/lab/
     ```
 
-1. Now start the lab
+  - Now start the lab
     ```
     icarroll@docker01:handouts$ make lab
     ```
