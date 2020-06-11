@@ -20,16 +20,16 @@ To assemble the handouts for all lesson from a specific list in the `lessons.yml
 
 This repository works in conjunction with the SESYNC-ci/teaching-lab to provision a containerized, cloud platform providing software to participants during a workshop or short course.
 
-- The [teaching-lab repository](https://github.com/sesync-ci/teaching-lab) and [handouts](https://github.com/SESYNC-ci/handouts.git) repositories must be cloned into your research-home space. 
+- The [teaching-lab](https://github.com/sesync-ci/teaching-lab) and [handouts](https://github.com/SESYNC-ci/handouts.git) repositories must be cloned into your research-home space. 
 
-- Log in to docker01.research.sesync.org, and `cd` into the teaching-lab repository.  Your user will need to be in the `docker` UNIX group on this host.
+- Log in to docker01.research.sesync.org, and `cd` into the teaching-lab repository in your research-home space.  Your user will need to be in the `docker` UNIX group on this host.
 
   - Build the docker images defined by the Dockerfiles in the teaching-lab repo. Use `docker images` to see existing images, and `docker rmi <NAME>` and `docker image prune` to clean out existing images as needed before building.
     ```
     icarroll@docker01:teaching-lab$ make 
     ```
 
-- Log into a host (eg. sshgw02.research.sesync.org) that can access `/nfs` and `cd` into the handouts repoisotry you cloned earlier.  Run `make` to get the data. One side effect of running `make` in the handouts repository is the creation of a data.zip, whose contents need to be made available to the `docker-entrypoint.sh` script that initializes the docker containers. A second side effect is processing the root/tmp/lab/users.txt file if it exits.
+- Log into a host (eg. sshgw02.research.sesync.org) that can access `/nfs` and `cd` into the handouts repository in your research-home that you cloned earlier.  Run `make` to get the data. One side effect of running `make` in the handouts repository is the creation of a data.zip, whose contents need to be made available to the `docker-entrypoint.sh` script that initializes the docker containers. A second side effect is processing the root/tmp/lab/users.txt file if it exits.
     ```
     icarroll@sshgw02:handouts$ make
     ```
