@@ -4,10 +4,10 @@ pushd "$(dirname "$0")"
 
 # # Users and Group Setup
 #
-# The instructor must create a list of users and optionall, gorup assignments.
-# Create a /tmp/lab-users.txt file with usernames, one per line.
-# Optionally create a /tmp/lab-groups.txt file a groupname followed by the member usernames,
-# separated by spaces, one per line.
+# The instructor must manually create a list of users and groups (optional).
+# Create a users.txt file in location /tmp/lab/users.txt with usernames, one per line.
+# Optionally, create a groups.txt file in location /tmp/lab/groups.txt file, with 
+# a group name followed by the member usernames, separated by spaces, one per line.
 #
 # Add all the users from the /tmp/lab/users.txt file
 if [ -f "users.txt" ]; then
