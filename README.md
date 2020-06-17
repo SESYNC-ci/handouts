@@ -63,6 +63,8 @@ If a handouts folder already exists, and therefore the clone fails, delete the h
     icarroll@docker01:handouts$ make lab
     ```
 
+- The lab is made with `docker stack deploy -c docker-compose.yml lab` command in the Makefile.  To stop the containers in the lab, use `docker stack rm docker-compose.yml lab`.  Only then you can remove and rebuild the containers if needed. 
+
 Why is this so complicated. Well, there are some gotcha's having to do with the SESYNC cyberinfrastrucutre:
 - The docker server does not have access to /nfs.
 - The docker container cannot mount to folders in  /nfs or /research-home, so the `make lab` target must be run from a clone of the repository in a local folder, e.g. /srv.
