@@ -1,15 +1,16 @@
 2020-07-20-summer-institute:
  - basic-R-lesson
-# - graphics-with-ggplot2-lesson
-# - basic-Python-lesson
-# - basic-git-lesson
-# - census-data-manipulation-in-R-lesson
-# - census-data-manipulation-in-Python-lesson
-# - text-mining-lesson
-# - online-data-lesson
-# - geospatial-packages-in-R-lesson
-# - remote-sensing-classification-lesson
-# - basic-Shiny-lesson
+ - graphics-with-ggplot2-lesson
+ - basic-Python-lesson
+ - basic-git-lesson
+ - census-data-manipulation-in-R-lesson
+ - census-data-manipulation-in-Python-lesson
+ - text-mining-lesson
+ - online-data-with-R-lesson
+ - online-data-lesson
+ - geospatial-packages-in-R-lesson
+ - basic-Shiny-lesson
+ - remote-sensing-classification-lesson
 # - introdb-lesson
  - data-package-lesson
 
