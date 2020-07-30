@@ -82,7 +82,7 @@ icarroll@docker01:tmp$ zip -r -q ~/$USER-lab $USER-lab/
 icarroll@docker01:tmp$ rm -rf /tmp/$USER-lab/  # cleanup temp files
 ```
 
-At this point you will have a zip file in your research-home.  Move the file to `/nfs/` so you can share with the user.    
+At this point you will have a zip file in your research-home, but you should move the file to `/nfs/` so you can share with the user.    
 
 Log into a host (eg. sshgw02.research.sesync.org) that can access `/nfs` and execute the following: 
 ```
