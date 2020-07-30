@@ -93,7 +93,7 @@ Go to [files.sesync.org](files.sesync.org) where you can obtain a sharing link t
 
 After lab users have had time to request their files (usually a couple weeks after a training event), the data volumes can be removed to clean up the docker01 server.  
 ```
-icarroll@docker01:~$ docker volume ls    # via the volumes
+icarroll@docker01:~$ docker volume ls    # list the volumes
 icarroll@docker01:~$ docker volume prune # remove the volumes
 ```
 
