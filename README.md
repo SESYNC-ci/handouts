@@ -20,7 +20,7 @@ To assemble the handouts for all lesson from a specific list in the `lessons.yml
 
 This repository works in conjunction with the SESYNC-ci/teaching-lab to provision a containerized, cloud platform providing software to participants during a workshop or short course.
 
-- The [teaching-lab](https://github.com/sesync-ci/teaching-lab) and [handouts](https://github.com/SESYNC-ci/handouts.git) repositories must be cloned into your research-home space. 
+- The [teaching-lab](https://github.com/sesync-ci/teaching-lab) and [handouts](https://github.com/SESYNC-ci/handouts.git) repositories must be cloned into your research-home space.  
 
 - Create two text files with user and group information.  `users.txt` contains a username (**must be _all_ lowercase**) for each workshop participant, with each name on a separate line.  `groups.txt` contains a team name followed by team participants (space delimited), with each team on a separate line.  Save these files in `~/path/to/handouts/root/tmp/lab/` on your research-home space.  Note, these text files are in the `.gitignore` for the handouts repo. 
 
