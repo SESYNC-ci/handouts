@@ -65,20 +65,36 @@ If a handouts folder already exists, and therefore the clone fails, delete the h
 
 - The lab is made with `docker stack deploy -c docker-compose.yml lab` command in the Makefile.  To stop the containers in the lab, use `docker stack rm docker-compose.yml lab`.  Only then you can remove and rebuild the containers if needed. 
 
-## User Archives
-Users may wish to have a copy of their lab files after the conslusion of the lab.
+Why is this so complicated? Well, there are some gotcha's having to do with the SESYNC cyberinfrastrucutre:
+- The docker server does not have access to /nfs.
+- The docker container cannot mount to folders in  /nfs or /research-home, so the `make lab` target must be run from a clone of the repository in a local folder, e.g. /srv.
+
+
+## Lab User Archives
+Users may wish to have a copy of their lab files after the removal of the lab.
 
 Run as yourself, substituting where needed:
 ```
 icarroll@docker01:~$ sudo rsync -a /var/lib/docker/volumes/lab_home/_data/$USER/ /tmp/$USER-lab/  # note that the slash at the end of the path is significant
-icarroll@docker01:~$ sudo chown -R rcarroll /tmp/$USER-lab/
+icarroll@docker01:~$ sudo chown -R icarroll /tmp/$USER-lab/
 icarroll@docker01:~$ cd /tmp
 icarroll@docker01:tmp$ zip -r -q ~/$USER-lab $USER-lab/
-icarroll@docker01:tmp$ rm -rf /tmp/$USER-lab/  # cleanup
+icarroll@docker01:tmp$ rm -rf /tmp/$USER-lab/  # cleanup temp files
 ```
 
-At this point you will have a zip file that you can share with the user thhrough a file sharing service.
+At this point you will have a zip file in your research-home.  Move the file to `/nfs/` so you can share with the user.    
 
-Why is this so complicated? Well, there are some gotcha's having to do with the SESYNC cyberinfrastrucutre:
-- The docker server does not have access to /nfs.
-- The docker container cannot mount to folders in  /nfs or /research-home, so the `make lab` target must be run from a clone of the repository in a local folder, e.g. /srv.
+Log into a host (eg. sshgw02.research.sesync.org) that can access `/nfs` and execute the following: 
+```
+icarroll@sshgw02:~$ mv $USER-lab.zip /nfs/icarroll-data
+```
+
+Go to [files.sesync.org](files.sesync.org) where you can obtain a sharing link to send to the user.    
+
+After lab users have had time to request their files (usually a couple weeks after a training event), the data volumes can be removed to clean up the docker01 server.  
+```
+icarroll@docker01:~$ docker volume ls    # via the volumes
+icarroll@docker01:~$ docker volume prune # remove the volumes
+```
+
+You now have a clean slate for the next training event.
