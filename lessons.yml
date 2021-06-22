@@ -1,4 +1,19 @@
-2021-00-00-geospatial-workshop:
+2021-07-20-summer-institute:
+ - basic-R-lesson
+ - graphics-with-ggplot2-lesson
+ - basic-Python-lesson
+ - basic-git-lesson
+ - census-data-manipulation-in-R-lesson
+ - census-data-manipulation-in-Python-lesson
+ - geospatial-packages-in-R-lesson
+ - model-lang-lesson
+ - vector-analysis-syracuse-lesson
+ - text-mining-lesson
+ - raster-time-series-alaska-lesson
+ - leaflet-in-R-lesson
+ - data-package-lesson
+
+2021-05-06-geospatial-workshop:
  - atelier_rgeo
  - raster-time-series-alaska-lesson
  - vector-analysis-syracuse-lesson
