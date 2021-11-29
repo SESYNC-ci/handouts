@@ -89,19 +89,33 @@
 
 cyberhelp.sesync.org:
  - basic-R-lesson
- - basic-git-lesson
  - basic-Python-lesson
- - maps-in-R-lesson
+ - basic-git-lesson
+ - basic-SQL-lesson
  - census-data-manipulation-in-R-lesson
+ - maps-in-R-lesson
+ - census-data-manipulation-in-Python-lesson
+ - graphics-with-ggplot2-lesson
+ - model-lang-lesson
+ - text-mining-lesson
+ - online-data-with-R-lesson
+ - online-data-lesson
  - interactive-rmarkdown-lesson
  - leaflet-in-R-lesson
- - online-data-lesson
- - model-lang-lesson
- - graphics-with-ggplot2-lesson
- - gis-abm-lesson
- - geospatial-packages-in-R-lesson
  - basic-Shiny-lesson
- - text-mining-lesson
+ - git-in-the-shell-lesson
+ - advanced-git-lesson
+ - advanced-tidyverse-lesson
+ - geospatial-packages-in-R-lesson
+ - vector-analysis-syracuse-lesson
+ - raster-time-series-alaska-lesson
  - osgeo-lesson
- - netlogo-programming-lesson
+ - remote-sensing-classification-lesson
+ - fldas-pipeline-lesson
+ - sqlite-lesson
  - introdb-lesson
+ - basic-netlogo-lesson
+ - netlogo-programming-lesson 
+ - gis-abm-lesson
+ - data-package-lesson
+ 
